@@ -92,9 +92,9 @@ Google Cloud (SSO)
 
 | 參數項目 | 範例值（本次部署） | 說明 |
 |---|---|---|
-| Google Cloud Identity 主要網域 | `renshenian.com` | 使用者、群組信箱所屬的網域 |
-| Entra ID 租戶網域 | `renshenian.com`（與 Cloud Identity 相同） | 若與 Cloud Identity 網域不同，需額外設定屬性轉換，詳見 Part 1 步驟 5 |
-| 佈建專用帳號 | `entra-id-provisioning@renshenian.com` | 專門用來授權 Entra ID 佈建功能的 Cloud Identity 帳號 |
+| Google Cloud Identity 主要網域 | `demo.com` | 使用者、群組信箱所屬的網域 |
+| Entra ID 租戶網域 | `demo.com`（與 Cloud Identity 相同） | 若與 Cloud Identity 網域不同，需額外設定屬性轉換，詳見 Part 1 步驟 5 |
+| 佈建專用帳號 | `entra-id-provisioning@demo.com` | 專門用來授權 Entra ID 佈建功能的 Cloud Identity 帳號 |
 | Provisioning 應用程式名稱 | `Google Cloud (Provisioning)` | Entra ID 中負責同步帳號的企業應用程式 |
 | SSO 應用程式名稱 | `Google Cloud (SSO)` | Entra ID 中負責登入驗證的企業應用程式 |
 | Google SAML 設定檔名稱 | `EntraID` | 在 Cloud Identity 建立的第三方 IdP SSO 設定檔 |
