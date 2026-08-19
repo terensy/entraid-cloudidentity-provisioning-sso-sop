@@ -291,17 +291,19 @@ Google Cloud (SSO)
 
    ![屬性與宣告編輯連結](images/33-entra-屬性與宣告編輯連結.png)
 
-2. 將「其他宣告」底下的預設內容都移除，「必要的宣告」只留下「唯一使用者識別碼 (名稱識別碼)」。
+2. 將「其他宣告」底下的預設內容都移除，「必要的宣告」只留下「唯一使用者識別碼 (名稱識別碼)」。確認畫面應如下所示：
+
+   ![屬性與宣告確認畫面](images/34-entra-屬性與宣告確認畫面.png)
 
 3. 進入「唯一使用者識別碼 (名稱識別碼)」編輯頁面。若 Entra ID 網域與 Google Cloud Identity 網域**不一致**，需要額外設定轉換規則：來源選擇「轉換」，轉換方式選 `Join()`，參數 1 填入來源屬性（例如 `user.userprincipalname`）、分隔符號填 `@`，參數 2 的「屬性名稱」填入 Google Cloud Identity 的網域。設定完成後點選相關的新增／儲存按鈕。
 
-   ![唯一使用者識別碼轉換設定](images/34-entra-唯一使用者識別碼轉換設定.png)
+   ![唯一使用者識別碼轉換設定](images/35-entra-唯一使用者識別碼轉換設定.png)
 
 ### 步驟 5：下載憑證並取得安裝資訊
 
 點選「SAML 憑證」區塊中「憑證 (Base64)」下載，並記下底下「安裝 Google Cloud (SSO)」區塊列出的三組網址（**登入 URL**、**Microsoft Entra 識別碼**、**登出 URL**），稍後在 Google Cloud Identity 設定中會用到。
 
-![SAML 憑證下載與安裝資訊](images/35-entra-saml憑證下載與安裝資訊.png)
+![SAML 憑證下載與安裝資訊](images/36-entra-saml憑證下載與安裝資訊.png)
 
 ### 步驟 6：回到 Google Cloud Identity 完成 SSO 設定檔
 
@@ -315,19 +317,19 @@ Google Cloud (SSO)
 
 完成後點選「儲存」。
 
-![Cloud Identity IDP 詳細資料表單](images/36-cloudidentity-idp詳細資料表單.png)
+![Cloud Identity IDP 詳細資料表單](images/37-cloudidentity-idp詳細資料表單.png)
 
 ### 步驟 7：指派 SSO 設定檔
 
 1. 在「管理單一登入 (SSO) 設定檔指派作業」區塊，設定哪一個機構單位要套用哪一個 SSO 設定檔。若不指定，預設會是整個組織套用同一個 SSO 設定檔。
 
-   ![SSO 設定檔指派作業](images/37-cloudidentity-sso設定檔指派作業.png)
+   ![SSO 設定檔指派作業](images/38-cloudidentity-sso設定檔指派作業.png)
 
    > 依照〔開始之前〕的建議，若佈建專用帳號有獨立的機構單位，記得在這裡把該機構單位的 SSO 設定檔指派為「無」，避免佈建帳號被強制導向 SSO 登入。
 
 2. 指派設定頁面中，預設選擇「讓 Google 提醒他們輸入使用者名稱，然後將他們重新導向這個設定檔的 IdP 登入頁面」，維持這個選項即可。
 
-   ![登入重新導向選項](images/38-cloudidentity-登入重新導向選項.png)
+   ![登入重新導向選項](images/39-cloudidentity-登入重新導向選項.png)
 
 完成以上設定後，就可以透過 Entra ID SSO 登入 Google Cloud Console。**別忘了 Google Cloud 的 IAM 仍然要另外指派角色給使用者或群組**，SSO 只解決「登入驗證」，不會自動給予 GCP 資源的存取權限。
 
@@ -335,7 +337,7 @@ Google Cloud (SSO)
 
 如果除了 Google Cloud Console 之外，還要讓使用者透過同一組 SSO 登入其他 Google 服務（例如 Gemini Enterprise、Google 文件、Gmail 等），需要依照下表，把對應服務的網址設定成 Entra ID SSO 應用程式的「登入 URL」（可依需要建立多個 SSO 應用程式或另外設定重新導向規則），表中 `DOMAIN` 需替換為實際網域：
 
-![各服務網域專屬網址對照表](images/39-cloudidentity-各服務網域專屬網址對照表.png)
+![各服務網域專屬網址對照表](images/40-cloudidentity-各服務網域專屬網址對照表.png)
 
 ---
 
@@ -343,7 +345,7 @@ Google Cloud (SSO)
 
 都設定完成後，從一般 Google Cloud 登入介面輸入 email 帳號，就會自動導向 Microsoft 的登入驗證畫面。
 
-![Microsoft 登入畫面](images/40-microsoft-登入畫面.png)
+![Microsoft 登入畫面](images/41-microsoft-登入畫面.png)
 
 > ⚠️ **網域不一致時的登入注意事項**：如果 Google Cloud Identity 網域跟 Entra ID 網域不一樣，在 Google Cloud 登入畫面要輸入 **Cloud Identity 網域**的 email 帳號；轉導到 Microsoft 登入畫面後，則要輸入 **Entra ID 網域**的 email 帳號，才能成功轉導登入。
 
